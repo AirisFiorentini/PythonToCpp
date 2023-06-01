@@ -8,10 +8,10 @@ if sys.version_info[1] > 5:
 else:
 	from typing.io import TextIO
 
-if __name__ is not None and "." in __name__:
-    from .Python3ParserBase import Python3ParserBase
-else:
-    from Python3ParserBase import Python3ParserBase
+# if __name__ is not None and "." in __name__:
+#     from .Python3ParserBase import Python3ParserBase
+# else:
+#     from Python3ParserBase import Python3ParserBase
 
 def serializedATN():
     return [
@@ -605,6 +605,13 @@ def serializedATN():
         1392,1394,1396,1402,1405,1415,1419,1423,1433,1437,1440,1447,1452,
         1458,1463,1468
     ]
+
+from antlr4.Parser import Parser
+
+class Python3ParserBase(Parser):
+    # Переопределите здесь любые методы или добавьте свои собственные методы
+    pass
+
 
 class Python3Parser ( Python3ParserBase ):
 

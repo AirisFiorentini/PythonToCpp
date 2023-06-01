@@ -7,11 +7,17 @@ if sys.version_info[1] > 5:
 else:
     from typing.io import TextIO
 
+class Python3LexerBase(Lexer):
+    def __init__(self, input=None, output=sys.stdout):
+        super().__init__(input, output)
+        
+        # здесь можно добавить дополнительные поля или методы
 
-if __name__ is not None and "." in __name__:
-    from .Python3LexerBase import Python3LexerBase
-else:
-    from Python3LexerBase import Python3LexerBase
+
+# if __name__ is not None and "." in __name__:
+#     from .Python3LexerBase import Python3LexerBase
+# else:
+#     from Python3LexerBase import Python3LexerBase
 
 def serializedATN():
     return [
@@ -735,37 +741,37 @@ class Python3Lexer(Python3LexerBase):
 
     def NEWLINE_action(self, localctx:RuleContext , actionIndex:int):
         if actionIndex == 0:
-            this.onNewLine();
+            self.onNewLine();
      
 
     def OPEN_PAREN_action(self, localctx:RuleContext , actionIndex:int):
         if actionIndex == 1:
-            this.openBrace();
+            self.openBrace();
      
 
     def CLOSE_PAREN_action(self, localctx:RuleContext , actionIndex:int):
         if actionIndex == 2:
-            this.closeBrace();
+            self.closeBrace();
      
 
     def OPEN_BRACK_action(self, localctx:RuleContext , actionIndex:int):
         if actionIndex == 3:
-            this.openBrace();
+            self.openBrace();
      
 
     def CLOSE_BRACK_action(self, localctx:RuleContext , actionIndex:int):
         if actionIndex == 4:
-            this.closeBrace();
+            self.closeBrace();
      
 
     def OPEN_BRACE_action(self, localctx:RuleContext , actionIndex:int):
         if actionIndex == 5:
-            this.openBrace();
+            self.openBrace();
      
 
     def CLOSE_BRACE_action(self, localctx:RuleContext , actionIndex:int):
         if actionIndex == 6:
-            this.closeBrace();
+            self.closeBrace();
      
 
     def sempred(self, localctx:RuleContext, ruleIndex:int, predIndex:int):
@@ -781,7 +787,7 @@ class Python3Lexer(Python3LexerBase):
 
     def NEWLINE_sempred(self, localctx:RuleContext, predIndex:int):
             if predIndex == 0:
-                return this.atStartOfInput()
+                return self.atStartOfInput()
          
 
 
