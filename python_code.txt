@@ -1,2 +1,9 @@
+print("Hello world!")
 for i in range(10):
-    print(i)
+    print i
+
+a = 5
+if a < 6:
+    print("Yes")
+else: 
+    print("No)

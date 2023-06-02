@@ -1,3 +1,27 @@
+from antlr4 import FileStream, CommonTokenStream
+from Python3Lexer import Python3Lexer
+from Python3Parser import Python3Parser
+# from my_grammarListener import my_grammarListener
+from Python3Visitor import Python3Visitor
+
+# Считываем входной файл
+input_stream = FileStream("python_code.txt")
+
+# Создаем лексер и парсер
+lexer = Python3Lexer(input_stream)
+token_stream = CommonTokenStream(lexer)
+parser = Python3Parser(token_stream)
+
+# Парсим входные данные и получаем корневой узел дерева разбора
+tree = parser.file_input()
+
+# Создаем и запускаем посетителя
+visitor = Python3Visitor()
+result = visitor.visit(tree)
+
+# результат будет содержать код на C++
+print(result)
+
 # # open python_code file
 # import sys, os, re, shutil
 # from antlr4 import *
@@ -18,27 +42,5 @@
 #     smth = Python3ParserListener(output)
 #     walker = ParseTreeWalker()
 #     walker.walk(smth, tree)
-
-from antlr4 import FileStream, CommonTokenStream
-from Python3Lexer import Python3Lexer
-from Python3Parser import Python3Parser
-from Python3ParserListener import Python3ParserListener
-from PythonToCppVisitor import PythonToCppVisitor
-
-# Считываем входной файл
-input_stream = FileStream("python_code.txt")
-
-# Создаем лексер и парсер
-lexer = Python3Lexer(input_stream)
-token_stream = CommonTokenStream(lexer)
-parser = Python3Parser(token_stream)
-
-# Парсим входные данные и получаем корневой узел дерева разбора
-tree = parser.file_input()  # замените "startRule" на ваше начальное правило
-
-# Создаем и запускаем посетителя
-visitor = PythonToCppVisitor()
-visitor.visit(tree)
-
 
     

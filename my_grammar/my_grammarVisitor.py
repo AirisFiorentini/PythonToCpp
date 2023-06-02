@@ -1,48 +1,15 @@
-from my_grammarVisitor import my_grammarVisitor
-from my_grammarParser import my_grammarParser
+# Generated from my_grammar.g4 by ANTLR 4.13.0
+from antlr4 import *
+if "." in __name__:
+    from .my_grammarParser import my_grammarParser
+else:
+    from my_grammarParser import my_grammarParser
 
-class PythonToCppVisitor(my_grammarVisitor):
-    def __init__(self):
-        self.contextLevel = 0
-        super().__init__()
+# This class defines a complete generic visitor for a parse tree produced by my_grammarParser.
 
-    def visitFuncdef(self, ctx:my_grammarParser.FuncdefContext):
-        # Извлечение имени функции
-        func_name = ctx.NAME().getText()
+class my_grammarVisitor(ParseTreeVisitor):
 
-        # Извлечение аргументов функции
-        # Если у функции нет аргументов, список аргументов будет пустым
-        args = [arg.getText() for arg in ctx.parameters().typedargslist().tfpdef()] if ctx.parameters().typedargslist() else []
-
-        # Преобразование Python функции в C++ функцию
-        cpp_func_def = f"void {func_name}({', '.join(args)}) {{\n"
-
-        # Обработка тела функции
-        # Вызываем visitSuite для посещения и обработки каждого оператора в теле функции
-        for stmt in ctx.suite().stmt():
-            cpp_func_def += self.visit(stmt)
-
-        cpp_func_def += "}\n"
-
-        return cpp_func_def
-
-    # Напиши остальные методы посетителей здесь...
-
-    def visitFile_input(self, ctx:my_grammarParser.File_inputContext):
-        # TODO: Implement this method
-
-        pass
-
-    # Visit a parse tree produced by my_grammarParser#stmt.
-    def visitStmt(self, ctx:my_grammarParser.StmtContext):
-        pass
-
- 
-
-    # Add other methods here...
-
-# ???????????????????????????
-# Visit a parse tree produced by my_grammarParser#file_input.
+    # Visit a parse tree produced by my_grammarParser#file_input.
     def visitFile_input(self, ctx:my_grammarParser.File_inputContext):
         return self.visitChildren(ctx)
 
@@ -265,3 +232,17 @@ class PythonToCppVisitor(my_grammarVisitor):
     # Visit a parse tree produced by my_grammarParser#exprlist.
     def visitExprlist(self, ctx:my_grammarParser.ExprlistContext):
         return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by my_grammarParser#print_statement.
+    def visitPrint_statement(self, ctx:my_grammarParser.Print_statementContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by my_grammarParser#expression.
+    def visitExpression(self, ctx:my_grammarParser.ExpressionContext):
+        return self.visitChildren(ctx)
+
+
+
+del my_grammarParser

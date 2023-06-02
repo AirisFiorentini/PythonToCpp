@@ -413,5 +413,23 @@ class my_grammarListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by my_grammarParser#print_statement.
+    def enterPrint_statement(self, ctx:my_grammarParser.Print_statementContext):
+        pass
+
+    # Exit a parse tree produced by my_grammarParser#print_statement.
+    def exitPrint_statement(self, ctx:my_grammarParser.Print_statementContext):
+        pass
+
+
+    # Enter a parse tree produced by my_grammarParser#expression.
+    def enterExpression(self, ctx:my_grammarParser.ExpressionContext):
+        pass
+
+    # Exit a parse tree produced by my_grammarParser#expression.
+    def exitExpression(self, ctx:my_grammarParser.ExpressionContext):
+        pass
+
+
 
 del my_grammarParser

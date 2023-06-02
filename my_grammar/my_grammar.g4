@@ -72,6 +72,11 @@ subscript: test | test? COLON test? | test COLON test? COLON test? ;
 // exprlist используется в различных контекстах, где требуется список выражений
 exprlist: (expr COMMA)+ | expr ;
 
+// Правило для токена print
+print_statement : PRINT expression ;
+
+// Правило для выражения
+expression : NUMBER | STRING | print_statement ;
 
 /*
  * Lexer Rules
@@ -138,3 +143,4 @@ RANGE: 'range' ;
 YIELD: 'yield' ;
 LAMBDA: 'lambda' ;
 TILDE: '~' ;
+PRINT: 'print' ;
